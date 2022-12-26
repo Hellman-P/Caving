@@ -469,6 +469,7 @@ namespace Caving
                 var currentRoomPathBooleans = caveRoomsList[currentRoom].PossiblePathsBooleans;
                 var currentRoomPathExitTexts = caveRoomsList[currentRoom].PathExitText;
                 var currentRoomPathLeadsTo = caveRoomsList[currentRoom].PathLeadsToRoom;
+                //test
 
                 // Take player input, put it into lowercase and pass it to the AlternativeWords
                 string playerInput = Console.ReadLine();
