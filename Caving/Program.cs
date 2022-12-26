@@ -32,12 +32,13 @@ namespace Caving
 
         static void roomExitManager(SortedList<int, List<string>> pathTriggers, SortedList<int, bool> pathBooleans, SortedList<string, bool> unlocks, SortedList<int, string> exitPathText, SortedList<int, int> pathLeadsTo, List<string> roomDescription)
         {
-            Console.WriteLine("You could consider moving forwards, maybe you should?");
+            Console.WriteLine("You could consider moving forwards, maybe you should?\n");
 
             // Separating player input into list of strings
             string playerInput = Console.ReadLine();
             string playerInputLower = playerInput.ToLower();
             string[] separatedPlayerInput = playerInputLower.Split(' ', ',', '.');
+            Console.WriteLine();
 
             // Checking of the player wants to move to another room
             bool d = true;
@@ -96,12 +97,13 @@ namespace Caving
                                     listingOtions++;
                                 }
                             }
-                            Console.WriteLine("You could choose one of these or continue exploring more");
+                            Console.WriteLine("You could choose one of these or continue exploring more\n");
 
                             // Reading and separating players choice
                             string playerOption = Console.ReadLine();
                             string playerOptionLower = playerOption.ToLower();
                             string[] separatedplayerOption = playerOptionLower.Split(' ', ',', '.');
+                            Console.WriteLine();
                             //AlternativeWords(separatedPlayerInput); // Make this do something and use it before passing on
 
                             // opening choosen path both ways
@@ -117,8 +119,9 @@ namespace Caving
                                         {
                                             c = false;
                                             currentRoom = keyValue2.Value;
-                                            Console.WriteLine(exitPathText[currentRoom]);
+                                            Console.WriteLine("You brave yourself and move forward. It's not an easy path but you find yourself in a new room after some struggling.\n");
                                             Console.WriteLine(roomDescription[currentRoom]);
+                                            Console.WriteLine("What will you do now?");
                                             break;
                                         }
                                     }
@@ -410,7 +413,7 @@ namespace Caving
 
             caveRoomsList[0].UniqueKeywords.Add("tunnel", "On the side of the room quite high on the wall it feels like there could be a tunnel" +
                 "\nYou could probably make your way up there if you could use something to climb with\n");
-            caveRoomsList[0].UniqueKeywords.Add("pickaxe", "You could use your pickaxe as a climbing pick to get up into a\n");
+            caveRoomsList[0].UniqueKeywords.Add("pickaxe", "You could use your pickaxe\n");
 
             // Exploration unlocks
             caveRoomsList[0].ExplorationUnlocks.Add("crack", false);
