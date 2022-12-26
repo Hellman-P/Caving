@@ -252,11 +252,16 @@ namespace Caving
                         foundTriggerWords.Add("walk");
                         triggerCheck = true;
                         break;
+                    case "wall":
+                    case "walls":
+                        foundTriggerWords.Add("wall");
+                        triggerCheck = true;
+                        break;
 
 
                     // Room specific keywords
 
-                    //room 1
+                    //room 0
                     case "stand":
                         foundTriggerWords.Add("stand");
                         triggerCheck = true;
@@ -274,11 +279,6 @@ namespace Caving
                     case "inhale":
                     case "inhales":
                         foundTriggerWords.Add("air");
-                        triggerCheck = true;
-                        break;
-                    case "walls":
-                    case "wall":
-                        foundTriggerWords.Add("walls");
                         triggerCheck = true;
                         break;
                     case "dripping":
@@ -321,6 +321,43 @@ namespace Caving
                         triggerCheck = true;
                         break;
 
+
+
+                    // Room 1
+                    // Room specific generic keywords
+                    case "pillar":
+                    case "column":
+                    case "support":
+                    case "pole":
+                        foundTriggerWords.Add("pillar");
+                        triggerCheck = true;
+                        break;
+                    case "rapids":
+                        foundTriggerWords.Add("rapids");
+                        triggerCheck = true;
+                        break;
+
+                    // Unique keywords
+                    case "rope":
+                    case "hook":
+                        foundTriggerWords.Add("rope");
+                        triggerCheck = true;
+                        break;
+                    case "swim":
+                    case "bathe":
+                    case "dip":
+                    case "dive":
+                    case "plunge":
+                        foundTriggerWords.Add("swim");
+                        triggerCheck = true;
+                        break;
+                    case "river":
+                    case "stream":
+                    case "canal":
+                    case "channel":
+                        foundTriggerWords.Add("river");
+                        triggerCheck = true;
+                        break;
 
                     // Exit
                     case "exit":
@@ -378,7 +415,7 @@ namespace Caving
                 PathLeadsToRoom = new SortedList<int, int>(),
             });
 
-            // Building room #1
+            // Building room #0
 
             //Room description
             roomDescriptions.Add("It's quiet, you hear your movements echo and the quiet dripping of water. You also notice water is running across the floor\n");
@@ -433,48 +470,68 @@ namespace Caving
             caveRoomsList[0].PathLeadsToRoom.Add(1, 2);
 
             // Exit Path texts
-            caveRoomsList[0].PathExitText.Add(0, "You can take of your backpack and suck in your chest to be able to fit through the tight crack." +
+            caveRoomsList[0].PathExitText.Add(0, "You can take of your backpack and suck in your chest to be able to fit through the tight crack.\n" +
                 "\nBut theres no garantee you'll make it.");
 
-            caveRoomsList[0].PathExitText.Add(1, "You can use your pickaxe as a combing tool to get up into the tunnel high on the wall, hoping it leads somewhere usefull.");
+            caveRoomsList[0].PathExitText.Add(1, "You can use your pickaxe as a combing tool to get up into the tunnel high on the wall, hoping it leads somewhere usefull\n");
+
+
+
+            // Building room #1
+
+            // Room Description
+            roomDescriptions.Add("As you enter the room you feel yourself having been cute by jagged edges on the walls" +
+                "\nIt feels damp and you can hear running water\n");
+
+            // Generic keywords
+            // Keywords used by all rooms
+            caveRoomsList[1].GenericKeywords.Add("feel", "You feel hard edges and damp rock\ns");
+            caveRoomsList[1].GenericKeywords.Add("look", "You try your best but it's still too dark\n");
+            caveRoomsList[1].GenericKeywords.Add("listen", "The running water is drowning out any other possible sounds," +
+                "\nit's close\n");
+            caveRoomsList[1].GenericKeywords.Add("lamp", "Your light broke in the fall\n");
+            caveRoomsList[1].GenericKeywords.Add("drink", "You have nothing to drink\n");
+            caveRoomsList[1].GenericKeywords.Add("eat", "You have nothing to eat\n");
+            caveRoomsList[1].GenericKeywords.Add("smell", "The air feel more cold and fresh than expected, smells fresh\n");
+            caveRoomsList[1].GenericKeywords.Add("floor", "The floor is level and moist\n");
+            caveRoomsList[1].GenericKeywords.Add("wall", "Walking along the wall doesn't give you mush information except the room being small and the source of the noise." +
+                "\nThere's what feels like an underground river on one side of the room\n");
+            caveRoomsList[1].GenericKeywords.Add("walk", "You find a pillar in the middle of the room and what feels like an underground rover on one side of the room\n");
+            // Room specific generic keywords
+            caveRoomsList[1].GenericKeywords.Add("pillar", "feeling around the pillar doesn't yeild much but while doing so you feel a slight draft from above");
+            caveRoomsList[1].GenericKeywords.Add("rapids", "theres a chance the river might be to dangerous to cross or swim along." +
+                "\nIt's impossible to tell without getting in\n");
+
+            //Unique keywords
+            caveRoomsList[1].UniqueKeywords.Add("rope", "You could throw my hook rope towards the draft from above the pillar and hope there's something up there\n");
+            caveRoomsList[1].UniqueKeywords.Add("swim", "You could try swimming across or along the river, but it's dangerous\n");
+            caveRoomsList[1].UniqueKeywords.Add("river", "The river could be dangerous but it might be your only chance\n");
+
+            // Exploration unlocks
+            caveRoomsList[1].ExplorationUnlocks.Add("rope", false);
+
+            caveRoomsList[1].ExplorationUnlocks.Add("swim", false);
+            caveRoomsList[1].ExplorationUnlocks.Add("river", false);
+
+            // Possible path triggers
+            caveRoomsList[1].PossiblePathsTriggers.Add(2, new List<string>() { "rope"});
+            caveRoomsList[1].PossiblePathsTriggers.Add(3, new List<string>() { "swim", "river" });
+
+            // Possible paths booleans
+            caveRoomsList[1].PossiblePathsBooleans.Add(2, false);
+            caveRoomsList[1].PossiblePathsBooleans.Add(3, false);
+
+            // What room different exits lead too
+            caveRoomsList[1].PathLeadsToRoom.Add(2, 2);
+            caveRoomsList[1].PathLeadsToRoom.Add(3, 2); // Change this so it's lead somewhere else
+
+            // Exit path texts
+            caveRoomsList[1].PathExitText.Add(2, "You can throw the rope towards the suspected opening in the roof next to the pillar and try to climb it");
+            caveRoomsList[1].PathExitText.Add(3, "You can try crossing or swimming along the river and hope you find something before it exhausts you");
 
 
 
             // Building room #2
-
-            // Room Description
-            roomDescriptions.Add("You enter a wet cave...\n");
-
-            // Generic keywords
-            // Keywords used by all rooms
-            caveRoomsList[1].GenericKeywords.Add("feel", "");
-            caveRoomsList[1].GenericKeywords.Add("look", "");
-            caveRoomsList[1].GenericKeywords.Add("listen", "");
-            caveRoomsList[1].GenericKeywords.Add("lamp", "");
-            caveRoomsList[1].GenericKeywords.Add("drink", "");
-            caveRoomsList[1].GenericKeywords.Add("eat", "");
-
-            //Unique keywords
-
-
-            // Exploration unlocks
-
-
-            // Possible path triggers
-
-
-            // Possible paths booleans
-            caveRoomsList[1].PossiblePathsBooleans.Add(1, false);
-
-            // What room different exits lead too
-
-
-            // Exit path texts
-
-
-
-
-            // Building room #3
             roomDescriptions.Add("You enter a smelly cave...\n");
 
             // Generic keywords
