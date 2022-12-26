@@ -192,7 +192,7 @@ namespace Caving
             string[] separatedPlayerInput = input.Split(' ', ',', '.');
 
             // Comparing player inputs to all keywords
-            bool a = true;
+            bool triggerCheck = false;
             foreach (string separatedInput in separatedPlayerInput)
             {
                 // Changing word synonyms into trigger words
@@ -205,52 +205,52 @@ namespace Caving
                     case "touches":
                     case "feels":
                         foundTriggerWords.Add("feel");
-                        a = false;
+                        triggerCheck = true;
                         break;
                     case "look":
                     case "looks":
                     case "squint":
                     case "squints":
                         foundTriggerWords.Add("look");
-                        a = false;
+                        triggerCheck = true;
                         break;
                     case "listen":
                     case "sound":
                         foundTriggerWords.Add("listen");
-                        a = false;
+                        triggerCheck = true;
                         break;
                     case "lamp":
                     case "flashlight":
                     case "light":
                         foundTriggerWords.Add("lamp");
-                        a = false;
+                        triggerCheck = true;
                         break;
                     case "drink":
                         foundTriggerWords.Add("drink");
-                        a = false;
+                        triggerCheck = true;
                         break;
                     case "eat":
                     case "consume":
                         foundTriggerWords.Add("eat");
-                        a = false;
+                        triggerCheck = true;
                         break;
                     case "smell":
                     case "smells":
                     case "sniff":
                     case "sniffs":
                         foundTriggerWords.Add("smell");
-                        a = false;
+                        triggerCheck = true;
                         break;
                     case "floor":
                     case "ground":
                         foundTriggerWords.Add("floor");
-                        a = false;
+                        triggerCheck = true;
                         break;
                     case "walk": 
                     case "move":
                     case "stroll":
                         foundTriggerWords.Add("walk");
-                        a = false;
+                        triggerCheck = true;
                         break;
 
 
@@ -259,13 +259,13 @@ namespace Caving
                     //room 1
                     case "stand":
                         foundTriggerWords.Add("stand");
-                        a = false;
+                        triggerCheck = true;
                         break;
                     case "angle":
                     case "lean":
                     case "leaning":
                         foundTriggerWords.Add("angle");
-                        a = false;
+                        triggerCheck = true;
                         break;
                     case "air":
                     case "breath":
@@ -274,24 +274,24 @@ namespace Caving
                     case "inhale":
                     case "inhales":
                         foundTriggerWords.Add("air");
-                        a = false;
+                        triggerCheck = true;
                         break;
                     case "walls":
                     case "wall":
                         foundTriggerWords.Add("walls");
-                        a = false;
+                        triggerCheck = true;
                         break;
                     case "dripping":
                     case "dripp":
                     case "water":
                         foundTriggerWords.Add("dripping");
-                        a = false;
+                        triggerCheck = true;
                         break;
                     case "echo":
                     case "reverb":
                     case "resounding":
                         foundTriggerWords.Add("echo");
-                        a = false;
+                        triggerCheck = true;
                         break;
 
                     // Unique Keywords
@@ -301,24 +301,24 @@ namespace Caving
                     case "gap":
                     case "slit":
                         foundTriggerWords.Add("crack");
-                        a = false;
+                        triggerCheck = true;
                         break;
                     case "backpack":
                     case "bag":
                     case "equipment":
                         foundTriggerWords.Add("backpack");
-                        a = false;
+                        triggerCheck = true;
                         break;
                     case "tunnel":
                     case "path":
                         foundTriggerWords.Add("tunnel");
-                        a = false;
+                        triggerCheck = true;
                         break;
                     case "pickaxe":
                     case "tool":
                     case "tools":
                         foundTriggerWords.Add("pickaxe");
-                        a = false;
+                        triggerCheck = true;
                         break;
 
 
@@ -329,12 +329,10 @@ namespace Caving
                     case "forward":
                     case "out":
                         foundTriggerWords.Add("exit");
-                        a = false;
                         break;
                     default:
-                        if (a == true)
+                        if (triggerCheck == false)
                         {
-                            a = false;
                             foundTriggerWords.Add("cannot");
                         }
                         break;
@@ -389,7 +387,7 @@ namespace Caving
             // Keywords used by all rooms
             caveRoomsList[0].GenericKeywords.Add("feel", "You feel the nearest rock surfaces, they feel smooth and cold, you also feel the flow of air across the room");
             caveRoomsList[0].GenericKeywords.Add("look", "You try to squint your eyes to see but it's to no avail");
-            caveRoomsList[0].GenericKeywords.Add("listen", "You hear the dripping of water and it's echo");
+            caveRoomsList[0].GenericKeywords.Add("listen", "You hear the dripping of water and its echo");
             caveRoomsList[0].GenericKeywords.Add("lamp", "Your lamp is broken from the fall");
             caveRoomsList[0].GenericKeywords.Add("drink", "You have nothing to drink");
             caveRoomsList[0].GenericKeywords.Add("eat", "You have nothing to eat");
