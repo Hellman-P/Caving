@@ -183,11 +183,13 @@ namespace Caving
             string[] separatedPlayerInput = input.Split(' ', ',', '.');
 
             // Comparing player inputs to all keywords
+            bool a = true;
             foreach (string separatedInput in separatedPlayerInput)
             {
                 // Changing word synonyms into trigger words
                 switch (separatedInput)
                 {
+
                     // All room keywords
                     case "feel":
                     case "touch":
@@ -277,7 +279,11 @@ namespace Caving
                         foundTriggerWords.Add("exit");
                         break;
                     default:
-                        foundTriggerWords.Add("cannot"); // triggers when it shouldn't
+                        if (a == true)
+                        {
+                            a = false;
+                            foundTriggerWords.Add("cannot");
+                        }
                         break;
                 }
             }
@@ -446,15 +452,15 @@ namespace Caving
             // Intro to game and describing current room
             Console.WriteLine("You make your way down into the cave, a journey you have made many times before." +
                 "\nThe winding paths, tunnels with sharp edges, the cracks so thin you can barely breathe." +
-                "\nThey have all become everyday obsicles for you, not worse than your old daily commute." +
+                "\nThey have all become everyday obsticles for you, not worse than your old daily commute." +
                 "\nYou've become complacent and confident doing this. When the unthinkable happens..." +
-                "\nyour old rope you put there on your first expedition snaps." +
+                "\nYour old rope you put there on your first expedition snaps." +
                 "\nYou fall, it feels like you fall further than you should." +
-                "\nYour light smashes against the wall and breaks and in the fall you hit your head and pass out..." +
+                "\nYour light smashes against the wall and breaks and in the fall, you hit your head and pass out..." +
                 "\n" +
                 "\n...You wake uo some time later, it's hard to tell how much time has passed." +
                 "\nAll you know is you fell, you are in the dark and no one knows you're down here..." +
-                "\nHelp wont me coming...");
+                "\nHelp won't be coming...");
             Console.WriteLine();
             Console.WriteLine(roomDescriptions[currentRoom]);
             Console.WriteLine("What will you do?");
@@ -469,7 +475,6 @@ namespace Caving
                 var currentRoomPathBooleans = caveRoomsList[currentRoom].PossiblePathsBooleans;
                 var currentRoomPathExitTexts = caveRoomsList[currentRoom].PathExitText;
                 var currentRoomPathLeadsTo = caveRoomsList[currentRoom].PathLeadsToRoom;
-                //test
 
                 // Take player input, put it into lowercase and pass it to the AlternativeWords
                 string playerInput = Console.ReadLine();
