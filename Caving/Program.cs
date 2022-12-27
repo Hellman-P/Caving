@@ -32,7 +32,7 @@ namespace Caving
 
         static void roomExitManager(SortedList<int, List<string>> pathTriggers, SortedList<int, bool> pathBooleans, SortedList<string, bool> unlocks, SortedList<int, string> exitPathText, SortedList<int, int> pathLeadsTo, List<string> roomDescription)
         {
-            Console.WriteLine("You could consider moving forwards, maybe you should?\n");
+            Console.WriteLine("You could consider moving forwards, maybe you should? (y/n)\n");
 
             // Separating player input into list of strings
             string playerInput = Console.ReadLine();
@@ -194,7 +194,6 @@ namespace Caving
             string[] separatedPlayerInput = input.Split(' ', ',', '.');
 
             // Comparing player inputs to all keywords
-            bool triggerCheck = false;
             foreach (string separatedInput in separatedPlayerInput)
             {
                 // Changing word synonyms into trigger words
@@ -207,58 +206,48 @@ namespace Caving
                     case "touches":
                     case "feels":
                         foundTriggerWords.Add("feel");
-                        triggerCheck = true;
                         break;
                     case "look":
                     case "looks":
                     case "squint":
                     case "squints":
                         foundTriggerWords.Add("look");
-                        triggerCheck = true;
                         break;
                     case "listen":
                     case "sound":
                         foundTriggerWords.Add("listen");
-                        triggerCheck = true;
                         break;
                     case "lamp":
                     case "flashlight":
                     case "light":
                         foundTriggerWords.Add("lamp");
-                        triggerCheck = true;
                         break;
                     case "drink":
                         foundTriggerWords.Add("drink");
-                        triggerCheck = true;
                         break;
                     case "eat":
                     case "consume":
                         foundTriggerWords.Add("eat");
-                        triggerCheck = true;
                         break;
                     case "smell":
                     case "smells":
                     case "sniff":
                     case "sniffs":
                         foundTriggerWords.Add("smell");
-                        triggerCheck = true;
                         break;
                     case "floor":
                     case "ground":
                         foundTriggerWords.Add("floor");
-                        triggerCheck = true;
                         break;
                     case "walk": 
                     case "move":
                     case "stroll":
                     case "explore":
                         foundTriggerWords.Add("walk");
-                        triggerCheck = true;
                         break;
                     case "wall":
                     case "walls":
                         foundTriggerWords.Add("wall");
-                        triggerCheck = true;
                         break;
 
 
@@ -267,13 +256,11 @@ namespace Caving
                     //room 0
                     case "stand":
                         foundTriggerWords.Add("stand");
-                        triggerCheck = true;
                         break;
                     case "angle":
                     case "lean":
                     case "leaning":
                         foundTriggerWords.Add("angle");
-                        triggerCheck = true;
                         break;
                     case "air":
                     case "breath":
@@ -282,19 +269,16 @@ namespace Caving
                     case "inhale":
                     case "inhales":
                         foundTriggerWords.Add("air");
-                        triggerCheck = true;
                         break;
                     case "dripping":
                     case "dripp":
                     case "water":
                         foundTriggerWords.Add("dripping");
-                        triggerCheck = true;
                         break;
                     case "echo":
                     case "reverb":
                     case "resounding":
                         foundTriggerWords.Add("echo");
-                        triggerCheck = true;
                         break;
 
                     // Unique Keywords
@@ -304,24 +288,20 @@ namespace Caving
                     case "gap":
                     case "slit":
                         foundTriggerWords.Add("crack");
-                        triggerCheck = true;
                         break;
                     case "backpack":
                     case "bag":
                     case "equipment":
                         foundTriggerWords.Add("backpack");
-                        triggerCheck = true;
                         break;
                     case "tunnel":
                     case "path":
                         foundTriggerWords.Add("tunnel");
-                        triggerCheck = true;
                         break;
                     case "pickaxe":
                     case "tool":
                     case "tools":
                         foundTriggerWords.Add("pickaxe");
-                        triggerCheck = true;
                         break;
 
 
@@ -333,21 +313,18 @@ namespace Caving
                     case "support":
                     case "pole":
                         foundTriggerWords.Add("pillar");
-                        triggerCheck = true;
                         break;
                     case "rapids":
                     case "rapid":
                     case "rushing":
                     case "rush":
                         foundTriggerWords.Add("rapids");
-                        triggerCheck = true;
                         break;
 
                     // Unique keywords
                     case "rope":
                     case "hook":
                         foundTriggerWords.Add("rope");
-                        triggerCheck = true;
                         break;
                     case "swim":
                     case "bathe":
@@ -355,14 +332,12 @@ namespace Caving
                     case "dive":
                     case "plunge":
                         foundTriggerWords.Add("swim");
-                        triggerCheck = true;
                         break;
                     case "river":
                     case "stream":
                     case "canal":
                     case "channel":
                         foundTriggerWords.Add("river");
-                        triggerCheck = true;
                         break;
 
                     // Exit
@@ -371,15 +346,21 @@ namespace Caving
                     case "door":
                     case "forward":
                     case "out":
+                    case "enter":
                         foundTriggerWords.Add("exit");
                         break;
                     default:
-                        if (triggerCheck == false)
-                        {
-                            foundTriggerWords.Add("cannot");
-                        }
                         break;
                 }
+            }
+            if (foundTriggerWords.Count == 0)
+            {
+                foundTriggerWords.Add("cannot");
+            }
+            if (foundTriggerWords.Contains("exit"))
+            {
+                foundTriggerWords.Clear();
+                foundTriggerWords.Add("exit");
             }
             string playerOutput = String.Join(", ", foundTriggerWords);
             return playerOutput;
@@ -598,6 +579,7 @@ namespace Caving
                 string playerInput = Console.ReadLine();
                 string input = playerInput.ToLower();
                 keywordParser(AlternativeWords(input), currentRoomGenericSortedList, currentRoomUniqueSortedList, currentRoomUnlocks, currentRoomPathTriggers, currentRoomPathBooleans, currentRoomPathExitTexts, currentRoomPathLeadsTo, roomDescriptions);
+                //exit game trigger when done
             }
         }
     }
