@@ -604,7 +604,7 @@ namespace Caving
             // Building room #2
             // Room Description
             roomDescriptions.Add("As you enter the room you feel yourself having been cut by jagged edges on the walls" +
-                "\nIt feels damp and you can hear running water\n");
+                "\nIt feels damp and you can hear running water");
 
             // Generic keywords
             // Keywords used by all rooms
@@ -638,8 +638,8 @@ namespace Caving
             caveRoomsList[2].ExplorationUnlocks.Add("river", false);
 
             // Possible path triggers
-            caveRoomsList[2].PossiblePathsTriggers.Add(2, new List<string>() { "rope"});
-            caveRoomsList[2].PossiblePathsTriggers.Add(3, new List<string>() { "swim", "river" });
+            caveRoomsList[2].PossiblePathsTriggers.Add(4, new List<string>() { "rope"});
+            caveRoomsList[2].PossiblePathsTriggers.Add(5, new List<string>() { "swim", "river" });
 
             // Possible paths booleans
             caveRoomsList[2].PossiblePathsBooleans.Add(4, false);
@@ -650,54 +650,56 @@ namespace Caving
             caveRoomsList[2].PathLeadsToRoom.Add(5, 3);
 
             // Exit path texts
-            caveRoomsList[2].PathExitText.Add(2, "You can throw the rope towards the suspected opening in the roof next to the pillar and try to climb it");
-            caveRoomsList[2].PathExitText.Add(3, "You can try crossing or swimming along the river and hope you find something before it exhausts you");
+            caveRoomsList[2].PathExitText.Add(4, "You could throw the rope towards the suspected opening in the roof next to the pillar and try to climb it");
+            caveRoomsList[2].PathExitText.Add(5, "You could try swimming along the river. It will probably be more like being dragged along it's currents." +
+                "\nBut you can hope you wash up somewhere safe");
 
 
 
             // Building room #3
             // Room Description
-            roomDescriptions.Add("You enter a smelly cave...\n");
+            roomDescriptions.Add("You end up in what seems to be a very large room. You hear the noise from a rushing underground river nearby." +
+                "\nThe sound echoes far. It's somewhat damp but the air is fresh. You're probably getting closer to the surface");
 
             // Generic keywords
             // Keywords used by all rooms
-            caveRoomsList[3].GenericKeywords.Add("feel", "1");
+            caveRoomsList[3].GenericKeywords.Add("feel", "");
             caveRoomsList[3].GenericKeywords.Add("look", "");
             caveRoomsList[3].GenericKeywords.Add("listen", "");
             caveRoomsList[3].GenericKeywords.Add("lamp", "");
             caveRoomsList[3].GenericKeywords.Add("drink", "");
             caveRoomsList[3].GenericKeywords.Add("eat", "");
-            caveRoomsList[3].GenericKeywords.Add("smell", "T");
+            caveRoomsList[3].GenericKeywords.Add("smell", "");
             caveRoomsList[3].GenericKeywords.Add("floor", "");
             caveRoomsList[3].GenericKeywords.Add("wall", "");
             caveRoomsList[3].GenericKeywords.Add("walk", "");
             // Room specific generic keywords
-            caveRoomsList[3].GenericKeywords.Add("", "\n");
-
+            caveRoomsList[3].GenericKeywords.Add("rubble", "blocked path\n");
+            caveRoomsList[3].GenericKeywords.Add("large", "big room void safe for explosives \n");
 
             //Unique keywords
-            caveRoomsList[3].UniqueKeywords.Add("", "\n");
+            caveRoomsList[3].UniqueKeywords.Add("dynamite", "\n");
 
             // Exploration unlocks
-            caveRoomsList[3].ExplorationUnlocks.Add("", false);
+            caveRoomsList[3].ExplorationUnlocks.Add("dynamite", false);
 
             // Possible path triggers
-            caveRoomsList[3].PossiblePathsTriggers.Add(0, new List<string>() { "", "" });
+            caveRoomsList[3].PossiblePathsTriggers.Add(6, new List<string>() { "dynamite" });
 
             // Possible paths booleans
-            caveRoomsList[3].PossiblePathsBooleans.Add(0, false);
+            caveRoomsList[3].PossiblePathsBooleans.Add(6, false);
 
             // What room different exits lead too
-            caveRoomsList[3].PathLeadsToRoom.Add(0, 0);
+            caveRoomsList[3].PathLeadsToRoom.Add(6, 4);
 
             // Exit path texts
-            caveRoomsList[3].PathExitText.Add(3, "");
+            caveRoomsList[3].PathExitText.Add(6, "");
 
 
 
             // Building room #4
             // Room Description
-            roomDescriptions.Add("You enter a smelly cave...\n");
+            roomDescriptions.Add("Something about you being near the surface\n");
 
             // Generic keywords
             // Keywords used by all rooms
@@ -712,32 +714,40 @@ namespace Caving
             caveRoomsList[4].GenericKeywords.Add("wall", "");
             caveRoomsList[4].GenericKeywords.Add("walk", "");
             // Room specific generic keywords
-            caveRoomsList[4].GenericKeywords.Add("", "\n");
-
+            caveRoomsList[4].GenericKeywords.Add("light", "near surface\n");
+            caveRoomsList[4].GenericKeywords.Add("sound", "near surface\n");
+            caveRoomsList[4].GenericKeywords.Add("slug", "slug hole\n");
 
             //Unique keywords
-            caveRoomsList[4].UniqueKeywords.Add("", "\n");
+            caveRoomsList[4].UniqueKeywords.Add("climb", "\n");
+
+            caveRoomsList[4].UniqueKeywords.Add("slug", "\n");
 
             // Exploration unlocks
-            caveRoomsList[4].ExplorationUnlocks.Add("", false);
+            caveRoomsList[4].ExplorationUnlocks.Add("climb", false);
+            caveRoomsList[4].ExplorationUnlocks.Add("slug", false);
 
             // Possible path triggers
-            caveRoomsList[4].PossiblePathsTriggers.Add(0, new List<string>() { "", "" });
+            caveRoomsList[4].PossiblePathsTriggers.Add(6, new List<string>() { "climb" });
+            caveRoomsList[4].PossiblePathsTriggers.Add(7, new List<string>() { "slug" });
 
             // Possible paths booleans
-            caveRoomsList[4].PossiblePathsBooleans.Add(0, false);
+            caveRoomsList[4].PossiblePathsBooleans.Add(6, false);
+            caveRoomsList[4].PossiblePathsBooleans.Add(7, false);
 
             // What room different exits lead too
-            caveRoomsList[4].PathLeadsToRoom.Add(0, 0);
+            caveRoomsList[4].PathLeadsToRoom.Add(6, 6);
+            caveRoomsList[4].PathLeadsToRoom.Add(7, 5);
 
             // Exit path texts
-            caveRoomsList[4].PathExitText.Add(3, "");
+            caveRoomsList[4].PathExitText.Add(6, "");
+            caveRoomsList[4].PathExitText.Add(7, "");
 
 
 
             // Building room #5
             // Room Description
-            roomDescriptions.Add("You enter a smelly cave...\n");
+            roomDescriptions.Add("slug room\n");
 
             // Generic keywords
             // Keywords used by all rooms
@@ -752,26 +762,30 @@ namespace Caving
             caveRoomsList[5].GenericKeywords.Add("wall", "");
             caveRoomsList[5].GenericKeywords.Add("walk", "");
             // Room specific generic keywords
-            caveRoomsList[5].GenericKeywords.Add("", "\n");
+            caveRoomsList[5].GenericKeywords.Add("bone", "\n");
+            caveRoomsList[5].GenericKeywords.Add("equipment", "\n");
+            caveRoomsList[5].GenericKeywords.Add("shell", "\n");
+            caveRoomsList[5].GenericKeywords.Add("push", "\n");
+            caveRoomsList[5].GenericKeywords.Add("slug", "\n");
 
 
             //Unique keywords
-            caveRoomsList[5].UniqueKeywords.Add("", "\n");
+            caveRoomsList[5].UniqueKeywords.Add("air", "\n");
 
             // Exploration unlocks
-            caveRoomsList[5].ExplorationUnlocks.Add("", false);
+            caveRoomsList[5].ExplorationUnlocks.Add("air", false);
 
             // Possible path triggers
-            caveRoomsList[5].PossiblePathsTriggers.Add(0, new List<string>() { "", "" });
+            caveRoomsList[5].PossiblePathsTriggers.Add(8, new List<string>() { "air", "hole" });
 
             // Possible paths booleans
-            caveRoomsList[5].PossiblePathsBooleans.Add(0, false);
+            caveRoomsList[5].PossiblePathsBooleans.Add(8, false);
 
             // What room different exits lead too
-            caveRoomsList[5].PathLeadsToRoom.Add(0, 0);
+            caveRoomsList[5].PathLeadsToRoom.Add(8, 7);
 
             // Exit path texts
-            caveRoomsList[5].PathExitText.Add(3, "");
+            caveRoomsList[5].PathExitText.Add(8, "");
 
 
 
@@ -827,7 +841,6 @@ namespace Caving
                 string playerInput = Console.ReadLine();
                 string input = playerInput.ToLower();
                 keywordParser(AlternativeWords(input), currentRoomGenericSortedList, currentRoomUniqueSortedList, currentRoomUnlocks, currentRoomPathTriggers, currentRoomPathBooleans, currentRoomPathExitTexts, currentRoomPathLeadsTo, roomDescriptions);
-                //exit game trigger when done
             }
         }
     }
