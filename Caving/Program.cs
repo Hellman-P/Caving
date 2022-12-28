@@ -185,7 +185,7 @@ namespace Caving
             }
         }
 
-        static string AlternativeWords(string input)
+        static string AlternativeWords(string input, SortedList<string, string> genericKeyword, SortedList<string, string> uniqueKeywords)
         {
             var foundTriggerWords = new List<string>();
             // Separating player input into list of strings
@@ -381,7 +381,26 @@ namespace Caving
                         break;
                 }
             }
-            if (foundTriggerWords.Count == 0)
+
+            bool genericWordNotFound = false;
+            bool uniqueWordNotFound = false;
+
+            foreach (KeyValuePair <string, string> keyValueG in genericKeyword)
+            {
+                if (!foundTriggerWords.Contains(keyValueG.Key))
+                {
+                    genericWordNotFound = true;
+                }
+            }
+            foreach (KeyValuePair<string, string> keyValueU in uniqueKeywords)
+            {
+                if (!foundTriggerWords.Contains(keyValueU.Key))
+                {
+                    uniqueWordNotFound = true;
+                }
+            }
+
+            if (genericWordNotFound && uniqueWordNotFound == true)
             {
                 foundTriggerWords.Add("cannot");
             }
@@ -840,7 +859,7 @@ namespace Caving
                 // Take player input, put it into lowercase and pass it to the AlternativeWords
                 string playerInput = Console.ReadLine();
                 string input = playerInput.ToLower();
-                keywordParser(AlternativeWords(input), currentRoomGenericSortedList, currentRoomUniqueSortedList, currentRoomUnlocks, currentRoomPathTriggers, currentRoomPathBooleans, currentRoomPathExitTexts, currentRoomPathLeadsTo, roomDescriptions);
+                keywordParser(AlternativeWords(input, currentRoomGenericSortedList, currentRoomUniqueSortedList), currentRoomGenericSortedList, currentRoomUniqueSortedList, currentRoomUnlocks, currentRoomPathTriggers, currentRoomPathBooleans, currentRoomPathExitTexts, currentRoomPathLeadsTo, roomDescriptions);
             }
         }
     }
