@@ -736,6 +736,7 @@ namespace Caving
 
             //Unique keywords
             caveRoomsList[2].UniqueKeywords.Add("rope", "You could throw my hook rope towards the draft from above the pillar and hope there's something up there\n");
+
             caveRoomsList[2].UniqueKeywords.Add("swim", "You could try swimming across or along the river, but it's dangerous\n");
             caveRoomsList[2].UniqueKeywords.Add("river", "The river could be dangerous but it might be your only chance\n");
 
