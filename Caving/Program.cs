@@ -508,7 +508,7 @@ namespace Caving
             caveRoomsList[0].GenericKeywords.Add("feel", "You feel the nearest rock surfaces, they feel smooth and cold, you also feel the flow of air across the room");
             caveRoomsList[0].GenericKeywords.Add("look", "You try to squint your eyes to see but it's to no avail");
             caveRoomsList[0].GenericKeywords.Add("listen", "You hear the dripping of water and its echo");
-            caveRoomsList[0].GenericKeywords.Add("lamp", "Your lamp is broken from the fall");
+            caveRoomsList[0].GenericKeywords.Add("lamp", "Your lantern is broken from the fall");
             caveRoomsList[0].GenericKeywords.Add("drink", "You cup your hands and drink the cold water from the ground." +
                 "\nIt tastes like stale dirt...\n");
             caveRoomsList[0].GenericKeywords.Add("eat", "You have nothing to eat");
@@ -573,7 +573,7 @@ namespace Caving
             caveRoomsList[1].GenericKeywords.Add("feel", "You feel the nearest surface you can find. It's cold stone, water running over it\n");
             caveRoomsList[1].GenericKeywords.Add("look", "No matter how hard you try you can't see a thing in the dark\n");
             caveRoomsList[1].GenericKeywords.Add("listen", "The sound of dripping and falling water is too loud to hear much else\n");
-            caveRoomsList[1].GenericKeywords.Add("lamp", "Your light broke in the fall, You can't use it\n");
+            caveRoomsList[1].GenericKeywords.Add("lamp", "Your lantern broke in the fall, You can't use it\n");
             caveRoomsList[1].GenericKeywords.Add("drink", "You drink from the water running across the room. It tastes cold and more refreshing than expected\n");
             caveRoomsList[1].GenericKeywords.Add("eat", "You have nothing to eat\n");
             caveRoomsList[1].GenericKeywords.Add("smell", "The room smells slightly musty\n");
@@ -682,28 +682,42 @@ namespace Caving
 
             // Generic keywords
             // Keywords used by all rooms
-            caveRoomsList[3].GenericKeywords.Add("feel", "");
-            caveRoomsList[3].GenericKeywords.Add("look", "");
-            caveRoomsList[3].GenericKeywords.Add("listen", "");
-            caveRoomsList[3].GenericKeywords.Add("lamp", "");
-            caveRoomsList[3].GenericKeywords.Add("drink", "");
-            caveRoomsList[3].GenericKeywords.Add("eat", "");
-            caveRoomsList[3].GenericKeywords.Add("smell", "");
-            caveRoomsList[3].GenericKeywords.Add("floor", "");
-            caveRoomsList[3].GenericKeywords.Add("wall", "");
-            caveRoomsList[3].GenericKeywords.Add("walk", "");
+            caveRoomsList[3].GenericKeywords.Add("feel", "You reach your hand out to the nearest surface and mostly feel damp rocks." +
+                "\nBut also some dirt. Might be a sign you're getting closer to getting out\n");
+            caveRoomsList[3].GenericKeywords.Add("look", "It's still to dark to see, but you suspect you have probably gained altutude all in all." +
+                "\nYou could give that old lantern one more try. At this point why not\n");
+            caveRoomsList[3].GenericKeywords.Add("listen", "Every noise echoes far, the room must be very large. You also hear what sound like stones falling" +
+                "\nfrom time to time\n");
+            caveRoomsList[3].GenericKeywords.Add("lamp", "Your lantern is still broken, the only working part is the small sparker used to light the wick\n");
+            caveRoomsList[3].GenericKeywords.Add("drink", "Drink from the river, It's way to turbulent to do anything else. Just being close is dangerous\n");
+            caveRoomsList[3].GenericKeywords.Add("eat", "You taste the dirt, it doesn't taste as stale and dry as one would expect, You must be getting closer to the surface\n");
+            caveRoomsList[3].GenericKeywords.Add("smell", "The air is very fresh and smells somewhat of nature. You must be near the surface\n");
+            caveRoomsList[3].GenericKeywords.Add("floor", "The floor is mostly level, some steps here and there. patches of dirt and water spread about\n");
+            caveRoomsList[3].GenericKeywords.Add("wall", "You walk further than you would expect even with how large the room feels before you find a wall." +
+                "\nWalking along it you find a large pile of rubble. It feels like it's blocking a path, theres air coming through the spaces between the rocks and" +
+                "\nyou think you can maybe hear something on the other side\n");
+            caveRoomsList[3].GenericKeywords.Add("walk", "Walking along you notice the room is very large, exploring blindly you eventually find a large pile of rubble." +
+                "\nIt feels like it's blocking a path, theres air coming through the spaces between the rocks and you think you can maybe hear something on the other side\n");
             // Room specific generic keywords
-            caveRoomsList[3].GenericKeywords.Add("rubble", "blocked path\n");
-            caveRoomsList[3].GenericKeywords.Add("large", "big room void safe for explosives \n");
+            caveRoomsList[3].GenericKeywords.Add("rubble", "The pile of rubble is large and made of heavy rocks. You could never move them all in time and make it out." +
+                "\nMiners have solved riddles like these before using explosives. You should have some on you if you remember correctly. Questing is if it's safe to use," +
+                "\nit could be very dangerous if it's not used in a large enough space");
+            caveRoomsList[3].GenericKeywords.Add("large", "Doing your best to walk in a straigh line across the room counting your steps gives you an estimate on how large" +
+                "\nthe space actually is. You'd consider it safe for explosives, not that you're an expert but you've done similar ish things before");
 
             //Unique keywords
-            caveRoomsList[3].UniqueKeywords.Add("dynamite", "\n");
+            caveRoomsList[3].UniqueKeywords.Add("dynamite", "You have some dynamite in your side pocket, it might be ruined from water or something else might have happened" +
+                "\nto it but it's hard to inspect in the dark. You'd just have to light the fuse run for it and hope it works. You'd also need something to light it but" +
+                "\nyou should probably have something on you for that\n");
+            caveRoomsList[3].UniqueKeywords.Add("spark", "The sparker on your lantern still works, trying it gives you small glints of light. A very comforting sight but also" +
+                "\nnot enough to actually see anything. You'd be able to light something with this\n");
 
             // Exploration unlocks
             caveRoomsList[3].ExplorationUnlocks.Add("dynamite", false);
+            caveRoomsList[3].ExplorationUnlocks.Add("spark", false);
 
             // Possible path triggers
-            caveRoomsList[3].PossiblePathsTriggers.Add(6, new List<string>() { "dynamite" });
+            caveRoomsList[3].PossiblePathsTriggers.Add(6, new List<string>() { "dynamite", "spark" });
 
             // Possible paths booleans
             caveRoomsList[3].PossiblePathsBooleans.Add(6, false);
@@ -712,46 +726,48 @@ namespace Caving
             caveRoomsList[3].PathLeadsToRoom.Add(6, 4);
 
             // Exit path texts
-            caveRoomsList[3].PathExitText.Add(6, "");
+            caveRoomsList[3].PathExitText.Add(6, "Ignite your dynamite with the lantern sparker and place it amongst the rubble. Then run for it hoping for the best." +
+                "\nWhen and if it blows you'll probably have a path\n");
 
 
 
             // Building room #4
             // Room Description
-            roomDescriptions.Add("Something about you being near the surface\n");
+            roomDescriptions.Add("You enter a new room, You can see faint light above lightly illuminating a steep gravel path leading up to the light. at the base of the path you see" +
+                "\na large hole where gravel occasionally falls down. You can probably climb up it even if it would be a bit of a struggle\n");
 
             // Generic keywords
             // Keywords used by all rooms
-            caveRoomsList[4].GenericKeywords.Add("feel", "");
-            caveRoomsList[4].GenericKeywords.Add("look", "");
-            caveRoomsList[4].GenericKeywords.Add("listen", "");
-            caveRoomsList[4].GenericKeywords.Add("lamp", "");
-            caveRoomsList[4].GenericKeywords.Add("drink", "");
-            caveRoomsList[4].GenericKeywords.Add("eat", "");
-            caveRoomsList[4].GenericKeywords.Add("smell", "T");
-            caveRoomsList[4].GenericKeywords.Add("floor", "");
-            caveRoomsList[4].GenericKeywords.Add("wall", "");
-            caveRoomsList[4].GenericKeywords.Add("walk", "");
+            caveRoomsList[4].GenericKeywords.Add("feel", "You feel the gravel in your hands, it would be hard to climb as it falls below you but not impossible\n");
+            caveRoomsList[4].GenericKeywords.Add("look", "Finally having some light you can finally make out some details. It's a comfort to say the least, still you" +
+                "\ncaät make out much more than on your earlier inspection when entering the room\n");
+            caveRoomsList[4].GenericKeywords.Add("listen", "You can hear what sound like the outside from the light gap. It almost enthralls you completely but before losing focus" +
+                "\nyou also hear a faint noise coming from the hole. A reminder of what just happened\n");
+            caveRoomsList[4].GenericKeywords.Add("lamp", "Your lantern having done it's last defenetly wont be any help now\n");
+            caveRoomsList[4].GenericKeywords.Add("drink", "There's nothing to drink here\n");
+            caveRoomsList[4].GenericKeywords.Add("eat", "There's nothing to eat here\n");
+            caveRoomsList[4].GenericKeywords.Add("smell", "You smell natures allure but also the damp stink from the cave\n");
+            caveRoomsList[4].GenericKeywords.Add("floor", "The floor is covered in gravel and there's a large leading down nearby\n");
+            caveRoomsList[4].GenericKeywords.Add("wall", "The room is small, you can see smooth walls around you supporting a high roof\n");
+            caveRoomsList[4].GenericKeywords.Add("walk", "There's not much space to walk around in, you can inspect the gravel or check out the hole before trying for the climb\n");
             // Room specific generic keywords
-            caveRoomsList[4].GenericKeywords.Add("light", "near surface\n");
-            caveRoomsList[4].GenericKeywords.Add("sound", "near surface\n");
-            caveRoomsList[4].GenericKeywords.Add("slug", "slug hole\n");
+            caveRoomsList[4].GenericKeywords.Add("light", "The light is a heavenly sight after having been in the dark, You long for it\n");
 
             //Unique keywords
-            caveRoomsList[4].UniqueKeywords.Add("climb", "\n");
+            caveRoomsList[4].UniqueKeywords.Add("climb", "You can probably climb up the gravel path without preparation\n");
 
-            caveRoomsList[4].UniqueKeywords.Add("slug", "\n");
+            caveRoomsList[4].UniqueKeywords.Add("hole", "The hole pitchblack as it is has an allure also. You can hear faint noises coming from it, maybe you'd want to explore it\n");
 
             // Exploration unlocks
-            caveRoomsList[4].ExplorationUnlocks.Add("climb", false);
-            caveRoomsList[4].ExplorationUnlocks.Add("slug", false);
+            caveRoomsList[4].ExplorationUnlocks.Add("climb", true);
+            caveRoomsList[4].ExplorationUnlocks.Add("hole", false);
 
             // Possible path triggers
             caveRoomsList[4].PossiblePathsTriggers.Add(6, new List<string>() { "climb" });
             caveRoomsList[4].PossiblePathsTriggers.Add(7, new List<string>() { "slug" });
 
             // Possible paths booleans
-            caveRoomsList[4].PossiblePathsBooleans.Add(6, false);
+            caveRoomsList[4].PossiblePathsBooleans.Add(6, true);
             caveRoomsList[4].PossiblePathsBooleans.Add(7, false);
 
             // What room different exits lead too
@@ -759,43 +775,51 @@ namespace Caving
             caveRoomsList[4].PathLeadsToRoom.Add(7, 5);
 
             // Exit path texts
-            caveRoomsList[4].PathExitText.Add(6, "");
-            caveRoomsList[4].PathExitText.Add(7, "");
+            caveRoomsList[4].PathExitText.Add(6, "You could climb the gravel path for freedom, Finally out of this hellish cave\n");
+            caveRoomsList[4].PathExitText.Add(7, "Or... you could stay a while longer and explore the hole before moving on\n");
 
 
 
             // Building room #5
             // Room Description
-            roomDescriptions.Add("slug room\n");
+            roomDescriptions.Add("As you enter the hole, you notice the walls are covered with a mucus like substance. " +
+                "\nShimmying along, by the time you have reached halfway you are unsure if you could turn back, even if you wanted to. At the end of the tunnel " +
+                "\nyou feel a sudden drop, falling a for a few seconds before landing remarkably softly with an audible squish");
 
             // Generic keywords
             // Keywords used by all rooms
-            caveRoomsList[5].GenericKeywords.Add("feel", "");
-            caveRoomsList[5].GenericKeywords.Add("look", "");
-            caveRoomsList[5].GenericKeywords.Add("listen", "");
-            caveRoomsList[5].GenericKeywords.Add("lamp", "");
-            caveRoomsList[5].GenericKeywords.Add("drink", "");
-            caveRoomsList[5].GenericKeywords.Add("eat", "");
-            caveRoomsList[5].GenericKeywords.Add("smell", "T");
-            caveRoomsList[5].GenericKeywords.Add("floor", "");
-            caveRoomsList[5].GenericKeywords.Add("wall", "");
-            caveRoomsList[5].GenericKeywords.Add("walk", "");
+            caveRoomsList[5].GenericKeywords.Add("feel", "As you feel around, you notice what seem like strange rocks, however, on closer inspection" +
+                "\nyou can clearly make out a skull, pelvis, and different pieces of bone. As well as other various paraphernalia such as clothes\n");
+            caveRoomsList[5].GenericKeywords.Add("look", "\n");
+            caveRoomsList[5].GenericKeywords.Add("listen", "\n");
+            caveRoomsList[5].GenericKeywords.Add("lamp", "\n");
+            caveRoomsList[5].GenericKeywords.Add("drink", "\n");
+            caveRoomsList[5].GenericKeywords.Add("eat", "\n");
+            caveRoomsList[5].GenericKeywords.Add("smell", "Attempting to smell your surroundings your nose is filled with a vile, rotting odor, coming from all around but " +
+                "\ncentered around the strange shell and the bones\n");
+            caveRoomsList[5].GenericKeywords.Add("floor", "\n");
+            caveRoomsList[5].GenericKeywords.Add("wall", "\n");
+            caveRoomsList[5].GenericKeywords.Add("walk", "\n");
             // Room specific generic keywords
-            caveRoomsList[5].GenericKeywords.Add("bone", "\n");
-            caveRoomsList[5].GenericKeywords.Add("equipment", "\n");
-            caveRoomsList[5].GenericKeywords.Add("shell", "\n");
-            caveRoomsList[5].GenericKeywords.Add("push", "\n");
-            caveRoomsList[5].GenericKeywords.Add("slug", "\n");
+            caveRoomsList[5].GenericKeywords.Add("bone", "Picking a bone up it feels as if it has been altered, or rather is being modified to change its shape, " +
+                "\nbecoming less like a bone you would find in your arm of leg, more curved and circular\n");
+            caveRoomsList[5].GenericKeywords.Add("clothes", "The clothes have become similar to rags, with holes poking through in several places. " +
+                "\nThey don’t feel like tears, just strange gaps as if the fabric has been melted straight through\n");
+            caveRoomsList[5].GenericKeywords.Add("shell", "The shell is hard and feels like bone, pressing on it you can feel it shifting slightly, maybe you should try pushing it?\n");
+            caveRoomsList[5].GenericKeywords.Add("push", "Trying to move the shell, you struggle against the mucus. Your efforts feel wasted before the shell begins to move on its own." +
+                "\nA slimy, compressed body presses against you as the slug leaves its shell, and you can feel it crawling over you, leaving you covered in its residue\n");
+            caveRoomsList[5].GenericKeywords.Add("slug", "Examining the slug you can feel it seems to have a similar curiosity to you as you do it, allowing you to touch its body " +
+                "\nand head, but shying away as your hands reach its eyes. You can feel air flowing upwards from underneath the now empty shell it once inhabited\n");
 
 
             //Unique keywords
-            caveRoomsList[5].UniqueKeywords.Add("air", "\n");
+            caveRoomsList[5].UniqueKeywords.Add("air", "Pushing the shell to the side the air continues to stream upwards, and you can feel the outline of another hole in the ground, leading down\n");
 
             // Exploration unlocks
             caveRoomsList[5].ExplorationUnlocks.Add("air", false);
 
             // Possible path triggers
-            caveRoomsList[5].PossiblePathsTriggers.Add(8, new List<string>() { "air", "hole" });
+            caveRoomsList[5].PossiblePathsTriggers.Add(8, new List<string>() { "air" });
 
             // Possible paths booleans
             caveRoomsList[5].PossiblePathsBooleans.Add(8, false);
@@ -804,7 +828,7 @@ namespace Caving
             caveRoomsList[5].PathLeadsToRoom.Add(8, 7);
 
             // Exit path texts
-            caveRoomsList[5].PathExitText.Add(8, "");
+            caveRoomsList[5].PathExitText.Add(8, "Go down the hole");
 
 
 
@@ -813,7 +837,12 @@ namespace Caving
             roomDescriptions.Add("regular ending\n");
 
             // Building room #7 (ending scene(tr(sl)u(g)e ending))
-            roomDescriptions.Add("slug ending\n");
+            roomDescriptions.Add("You enter the hole, falling down you land amongst several other slugs. You can feel your whole body being touched and inspected by them, " +
+                "\nlicking and grinding against you as you are pushed towards a rock in the middle of the room. Touching the rock you feel your whole body shift, " +
+                "\nyour flesh becoming soft, your bones shifting and changing, becoming curved and locking together into one large piece. " +
+                "\nYour head is filled with thoughts which seem not as your own. " +
+                "\n\n“My metamorphosis begins, the form they promised me is is great but the transition will be shall be agonizing.”" +
+                "\n\nYou are now a slug, you win.\n");
 
 
             // choosing a start room
