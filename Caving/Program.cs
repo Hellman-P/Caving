@@ -120,7 +120,7 @@ namespace Caving
                                          {
                                              Console.WriteLine("What will you do now?");
                                          }
-                                         break;
+                                         return;
                                     }
                                 }
                             }
@@ -622,7 +622,7 @@ namespace Caving
 
             caveRoomsList[0].UniqueKeywords.Add("climb", "On the side of the room quite high on the wall it feels like there could be a tunnel you could climb into." +
                 "\nYou could probably make your way up there if you could use something to climb with\n");
-            caveRoomsList[0].UniqueKeywords.Add("pickaxe", "You could use your pickaxe\n");
+            caveRoomsList[0].UniqueKeywords.Add("pickaxe", "You could use your pickaxe as a climbing tool\n");
 
             // Exploration unlocks
             caveRoomsList[0].ExplorationUnlocks.Add("crack", false);
@@ -641,10 +641,10 @@ namespace Caving
 
             // What room different exits lead too
             caveRoomsList[0].PathLeadsToRoom.Add(0, 2);
-            caveRoomsList[0].PathLeadsToRoom.Add(1, 1);
+            caveRoomsList[0].PathLeadsToRoom.Add(1, 3);
 
             // Exit Path texts
-            caveRoomsList[0].PathExitText.Add(0, "You can take of your backpack, leave your pickaxe and suck in your chest to be able to fit through the tight crack\n" +
+            caveRoomsList[0].PathExitText.Add(0, "You can take of your backpack, leave your pickaxe and suck in your chest to be able to fit through the tight crack" +
                 "\nBut theres no guarantee you'll make it.");
 
             caveRoomsList[0].PathExitText.Add(1, "You can use your pickaxe as a climbing tool to get up into the tunnel high on the wall, hoping it leads somewhere usefull." +
@@ -929,8 +929,7 @@ namespace Caving
 
             // Ending scenes
             // Building room #6 (ending scene)
-            roomDescriptions.Add("You ascend from the gravel path, seeing the mouth of the cavern and an almost blining light." +
-                "\n" +
+            roomDescriptions.Add("You ascend from the gravel path, seeing the mouth of the cavern and an almost blinding light." +
                 "\nYou made it out...");
 
             // Building room #7 (ending scene(tr(sl)u(g)e ending))
