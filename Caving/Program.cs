@@ -10,7 +10,7 @@ namespace Caving
 {
     internal class Program
     {
-        public static int currentRoom = 1;
+        public static int currentRoom = 0;
         class CaveRoom
         {
             public SortedList<string, string> GenericKeywords = new SortedList<string, string>();
@@ -31,7 +31,7 @@ namespace Caving
         }
 
 
-        static void roomExitManager(SortedList<int, List<string>> pathTriggers, SortedList<int, bool> pathBooleans, SortedList<string, bool> unlocks, SortedList<int, string> exitPathText, SortedList<int, int> pathLeadsTo, List<string> roomDescription)
+        static void roomExitManager(SortedList<int, List<string>> pathTriggers, SortedList<int, bool> pathBooleans, SortedList<string, bool> unlocks, SortedList<int, string> exitPathText, SortedList<int, int> pathLeadsTo, List<string> roomDescription, SortedList<string, string> genericKeywords, SortedList<string, string> uniqueKeywords)
         {
             Console.WriteLine("You could consider moving forwards, maybe you should? (y/n)\n");
 
@@ -101,30 +101,26 @@ namespace Caving
                             // Reading and separating players choice
                             string playerOption = Console.ReadLine();
                             string playerOptionLower = playerOption.ToLower();
+                            AlternativeWords(playerOptionLower, genericKeywords, uniqueKeywords);
                             string[] separatedplayerOption = playerOptionLower.Split(' ', ',', '.');
                             Console.WriteLine();
-                            // AlternativeWords(separatedPlayerInput); // use it before passing on
 
                             // Entering new choosen room
-                            bool c = true;
-                            foreach (KeyValuePair<int, int> keyValue2 in pathLeadsTo)
+                            foreach (string optionInput in separatedplayerOption)
                             {
-                                foreach (string optionInput in separatedplayerOption)
+                                foreach (KeyValuePair<int, List<string>> keyValue in pathTriggers)
                                 {
-                                    if (c == true)
+ 
+                                    if (keyValue.Value.Contains(optionInput))
                                     {
-                                        if (foundKeywords.Contains(optionInput))
-                                        {
-                                            c = false;
-                                            currentRoom = keyValue2.Value;
-                                            Console.WriteLine("You brave yourself and move forward. It's not easy but you find yourself in a new area after some struggling.\n");
-                                            Console.WriteLine(roomDescription[currentRoom]);
-                                            if (currentRoom < 6)
-                                            {
-                                                Console.WriteLine("What will you do now?");
-                                            }
-                                            break;
-                                        }
+                                         currentRoom = pathLeadsTo[keyValue.Key];
+                                         Console.WriteLine("You brave yourself and move forward. It's not easy but you find yourself in a new area after some struggling.\n");
+                                         Console.WriteLine(roomDescription[currentRoom]);
+                                         if (currentRoom < 6)
+                                         {
+                                             Console.WriteLine("What will you do now?");
+                                         }
+                                         break;
                                     }
                                 }
                             }
@@ -179,7 +175,7 @@ namespace Caving
                 {
                     // Checking if player wants to leave
                     case "exit":
-                        roomExitManager(pathTriggers, pathBooleans, unlocks, exitPathText, pathLeadsToo, roomDescription);
+                        roomExitManager(pathTriggers, pathBooleans, unlocks, exitPathText, pathLeadsToo, roomDescription, genericKeywords, uniqueKeywords);
                         break;
                     case "cannot":
                         Console.WriteLine("You can't do that");
