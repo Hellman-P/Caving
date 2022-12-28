@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Caving
 {
@@ -776,10 +777,10 @@ namespace Caving
 
             // Ending scenes
             // Building room #6 (ending scene)
-            roomDescriptions.Add("You enter a smelly cave...\n");
+            roomDescriptions.Add("regular ending\n");
 
             // Building room #7 (ending scene(tr(sl)u(g)e ending))
-            roomDescriptions.Add("You enter a smelly cave...\n");
+            roomDescriptions.Add("slug ending\n");
 
 
             // choosing a start room
@@ -813,6 +814,14 @@ namespace Caving
                 var currentRoomPathBooleans = caveRoomsList[currentRoom].PossiblePathsBooleans;
                 var currentRoomPathExitTexts = caveRoomsList[currentRoom].PathExitText;
                 var currentRoomPathLeadsTo = caveRoomsList[currentRoom].PathLeadsToRoom;
+                if (currentRoom == 6 || currentRoom == 7)
+                {
+                    Console.WriteLine(roomDescriptions[currentRoom]);
+                    Console.WriteLine();
+                    Console.WriteLine("Press any key to exit the game...");
+                    Console.ReadLine();
+                    Environment.Exit(0);
+                }
 
                 // Take player input, put it into lowercase and pass it to the AlternativeWords
                 string playerInput = Console.ReadLine();
