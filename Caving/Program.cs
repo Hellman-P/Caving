@@ -10,7 +10,7 @@ namespace Caving
 {
     internal class Program
     {
-        public static int currentRoom = 0;
+        public static int currentRoom = 1;
         class CaveRoom
         {
             public SortedList<string, string> GenericKeywords = new SortedList<string, string>();
@@ -103,11 +103,10 @@ namespace Caving
                             string playerOptionLower = playerOption.ToLower();
                             string[] separatedplayerOption = playerOptionLower.Split(' ', ',', '.');
                             Console.WriteLine();
-                            //AlternativeWords(separatedPlayerInput); // Make this do something and use it before passing on
+                            // AlternativeWords(separatedPlayerInput); // use it before passing on
 
-                            // opening choosen path both ways
+                            // Entering new choosen room
                             bool c = true;
-                            c = true;
                             foreach (KeyValuePair<int, int> keyValue2 in pathLeadsTo)
                             {
                                 foreach (string optionInput in separatedplayerOption)
@@ -118,16 +117,22 @@ namespace Caving
                                         {
                                             c = false;
                                             currentRoom = keyValue2.Value;
-                                            Console.WriteLine("You brave yourself and move forward. It's not easy but you find yourself in a new room after some struggling.\n"); // aaaaaaa, I want custom ones for different paaaathsssss (I forgor) maybe a bonus I'll do during polish
+                                            Console.WriteLine("You brave yourself and move forward. It's not easy but you find yourself in a new area after some struggling.\n");
                                             Console.WriteLine(roomDescription[currentRoom]);
-                                            Console.WriteLine("What will you do now?");
+                                            if (currentRoom < 6)
+                                            {
+                                                Console.WriteLine("What will you do now?");
+                                            }
                                             break;
                                         }
                                     }
                                 }
                             }
                         }
-                        Console.WriteLine("You haven't found any good paths yet, explore more\n");
+                        if (currentRoom < 6)
+                        {
+                            Console.WriteLine("You haven't found any good paths yet, explore more\n");
+                        }
                         break;
 
                     case "no":
@@ -188,6 +193,7 @@ namespace Caving
         static string AlternativeWords(string input, SortedList<string, string> genericKeyword, SortedList<string, string> uniqueKeywords)
         {
             var foundTriggerWords = new List<string>();
+            var foundKeywordsForCurrentRoom = new List<string>();
             // Separating player input into list of strings
             string[] separatedPlayerInput = input.Split(' ', ',', '.');
 
@@ -219,7 +225,7 @@ namespace Caving
                         break;
                     case "lamp":
                     case "flashlight":
-                    case "light":
+                    case "lantern":
                         foundTriggerWords.Add("lamp");
                         break;
                     case "drink":
@@ -268,9 +274,9 @@ namespace Caving
                     case "leaning":
                         foundTriggerWords.Add("angle");
                         break;
-                    case "air":
                     case "Oxygen":
                     case "flow":
+                    case "air":
                         foundTriggerWords.Add("air");
                         break;
                     case "echo":
@@ -367,6 +373,95 @@ namespace Caving
                         foundTriggerWords.Add("river");
                         break;
 
+                    // Room 3
+                    // Room specific generic keywords
+                    case "large":
+                    case "room":
+                    case "cavern":
+                    case "cave":
+                        foundTriggerWords.Add("large");
+                        break;
+                    case "rubble":
+                    case "debri":
+                    case "debris":
+                    case "wreckage":
+                        foundTriggerWords.Add("rubble");
+                        break;
+
+                    // Unique keywords
+                    case "dynamite":
+                    case "explosive":
+                    case "explosives":
+                    case "bomb":
+                    case "bombs":
+                        foundTriggerWords.Add("dynamite");
+                        break; 
+                    case "spark":
+                    case "flicker":
+                    case "ignite":
+                        foundTriggerWords.Add("spark");
+                        break;
+
+                    // Room 4
+                    // Room specific generic keywords
+                    case "light":
+                    case "shine":
+                    case "gleam":
+                    case "gleaming":
+                        foundTriggerWords.Add("light");
+                        break;
+
+                    // Unique keywords
+                    //Climb done already
+                    case "hole":
+                    case "pit":
+                    case "crater":
+                    case "ditch":
+                        foundTriggerWords.Add("hole");
+                        break;
+
+                    // Room 5
+                    // Room specific generic keywords
+                    case "bone":
+                    case "skeleton":
+                    case "skeletons":
+                    case "cartilage":
+                        foundTriggerWords.Add("bone");
+                        break;
+                    case "clothes":
+                    case "fabrics":
+                    case "garments":
+                    case "attire":
+                        foundTriggerWords.Add("clothes");
+                        break;
+                    case "shell":
+                    case "carapace":
+                        foundTriggerWords.Add("shell");
+                        break;
+                    case "push":
+                    case "shove":
+                    case "nudge":
+                    case "thrust":
+                    case "press":
+                        foundTriggerWords.Add("push");
+                        break;
+                    case "slug":
+                    case "snail":
+                        foundTriggerWords.Add("slug");
+                        break;
+                    case "chewing":
+                    case "munch":
+                    case "munching":
+                    case "bite":
+                    case "chomp":
+                    case "nibble":
+                        foundTriggerWords.Add("chewing");
+                        break;
+
+
+                    // Unique keywords
+                    // air done earlier
+
                     // Exit
                     case "exit":
                     case "leave":
@@ -375,41 +470,39 @@ namespace Caving
                     case "out":
                     case "enter":
                     case "go":
-                        foundTriggerWords.Add("exit");
+                        foundKeywordsForCurrentRoom.Add("exit");
                         break;
                     default:
                         break;
                 }
             }
 
-            bool genericWordNotFound = false;
-            bool uniqueWordNotFound = false;
-
             foreach (KeyValuePair <string, string> keyValueG in genericKeyword)
             {
-                if (!foundTriggerWords.Contains(keyValueG.Key))
+                if (foundTriggerWords.Contains(keyValueG.Key))
                 {
-                    genericWordNotFound = true;
+                    foundKeywordsForCurrentRoom.Add(keyValueG.Key);
                 }
             }
             foreach (KeyValuePair<string, string> keyValueU in uniqueKeywords)
             {
-                if (!foundTriggerWords.Contains(keyValueU.Key))
+                if (foundTriggerWords.Contains(keyValueU.Key))
                 {
-                    uniqueWordNotFound = true;
+                    foundKeywordsForCurrentRoom.Add(keyValueU.Key);
                 }
             }
 
-            if (genericWordNotFound && uniqueWordNotFound == true)
+            if (foundKeywordsForCurrentRoom.Count == 0)
             {
-                foundTriggerWords.Add("cannot");
+                foundKeywordsForCurrentRoom.Add("cannot");
             }
-            if (foundTriggerWords.Contains("exit"))
+
+            if (foundKeywordsForCurrentRoom.Contains("exit"))
             {
-                foundTriggerWords.Clear();
-                foundTriggerWords.Add("exit");
+                foundKeywordsForCurrentRoom.Clear();
+                foundKeywordsForCurrentRoom.Add("exit");
             }
-            string playerOutput = String.Join(", ", foundTriggerWords);
+            string playerOutput = String.Join(", ", foundKeywordsForCurrentRoom);
             return playerOutput;
         }
         static void Main(string[] args)
@@ -734,13 +827,13 @@ namespace Caving
             // Building room #4
             // Room Description
             roomDescriptions.Add("You enter a new room, You can see faint light above lightly illuminating a steep gravel path leading up to the light. at the base of the path you see" +
-                "\na large hole where gravel occasionally falls down. You can probably climb up it even if it would be a bit of a struggle\n");
+                "\na large hole where gravel occasionally falls down. You can probably climb up the path even if it would be a bit of a struggle\n");
 
             // Generic keywords
             // Keywords used by all rooms
             caveRoomsList[4].GenericKeywords.Add("feel", "You feel the gravel in your hands, it would be hard to climb as it falls below you but not impossible\n");
             caveRoomsList[4].GenericKeywords.Add("look", "Finally having some light you can finally make out some details. It's a comfort to say the least, still you" +
-                "\ncaät make out much more than on your earlier inspection when entering the room\n");
+                "\ncan't make out much more than on your earlier inspection when entering the room\n");
             caveRoomsList[4].GenericKeywords.Add("listen", "You can hear what sound like the outside from the light gap. It almost enthralls you completely but before losing focus" +
                 "\nyou also hear a faint noise coming from the hole. A reminder of what just happened\n");
             caveRoomsList[4].GenericKeywords.Add("lamp", "Your lantern having done it's last defenetly wont be any help now\n");
@@ -764,7 +857,7 @@ namespace Caving
 
             // Possible path triggers
             caveRoomsList[4].PossiblePathsTriggers.Add(6, new List<string>() { "climb" });
-            caveRoomsList[4].PossiblePathsTriggers.Add(7, new List<string>() { "slug" });
+            caveRoomsList[4].PossiblePathsTriggers.Add(7, new List<string>() { "hole" });
 
             // Possible paths booleans
             caveRoomsList[4].PossiblePathsBooleans.Add(6, true);
@@ -790,16 +883,20 @@ namespace Caving
             // Keywords used by all rooms
             caveRoomsList[5].GenericKeywords.Add("feel", "As you feel around, you notice what seem like strange rocks, however, on closer inspection" +
                 "\nyou can clearly make out a skull, pelvis, and different pieces of bone. As well as other various paraphernalia such as clothes\n");
-            caveRoomsList[5].GenericKeywords.Add("look", "\n");
-            caveRoomsList[5].GenericKeywords.Add("listen", "\n");
-            caveRoomsList[5].GenericKeywords.Add("lamp", "\n");
-            caveRoomsList[5].GenericKeywords.Add("drink", "\n");
-            caveRoomsList[5].GenericKeywords.Add("eat", "\n");
+            caveRoomsList[5].GenericKeywords.Add("look", "You open your eyes to try and look around but immediately feel them begin to sting " +
+                "\nand well up with tears, making it impossible to see anything\n");
+            caveRoomsList[5].GenericKeywords.Add("listen", "You can hear the sound of something being dragged against the floor and quiet chewing\n");
+            caveRoomsList[5].GenericKeywords.Add("lamp", "You take out your lamp out to try and use its sparks to see, but you quickly notice it is covered " +
+                "\nin the same mucus as everything around you, making it useless\n");
+            caveRoomsList[5].GenericKeywords.Add("drink", "You try to drink some of the thick mucus and feel it begin to slide down your throat " +
+                "\nbefore your body rejects it, causing you to throw up, emptying your stomach onto the floor\n");
+            caveRoomsList[5].GenericKeywords.Add("eat", "You try and take a bite out of the slug and feel your teeth begin to dissolve," +
+                "\nits acid defense turning your mouth into a disgusting mix of blood and mucus\n");
             caveRoomsList[5].GenericKeywords.Add("smell", "Attempting to smell your surroundings your nose is filled with a vile, rotting odor, coming from all around but " +
                 "\ncentered around the strange shell and the bones\n");
-            caveRoomsList[5].GenericKeywords.Add("floor", "\n");
-            caveRoomsList[5].GenericKeywords.Add("wall", "\n");
-            caveRoomsList[5].GenericKeywords.Add("walk", "\n");
+            caveRoomsList[5].GenericKeywords.Add("floor", "The floor is covered with the mucus you landed in, it is hard to navigate through\n");
+            caveRoomsList[5].GenericKeywords.Add("wall", "You try to reach one of the walls, but you are stopped by more mucus, piles sloping downwards making it impossible to leave\n");
+            caveRoomsList[5].GenericKeywords.Add("walk", "You attempt to stand up to walk, but you simply fall back down onto your back end\n");
             // Room specific generic keywords
             caveRoomsList[5].GenericKeywords.Add("bone", "Picking a bone up it feels as if it has been altered, or rather is being modified to change its shape, " +
                 "\nbecoming less like a bone you would find in your arm of leg, more curved and circular\n");
@@ -810,6 +907,8 @@ namespace Caving
                 "\nA slimy, compressed body presses against you as the slug leaves its shell, and you can feel it crawling over you, leaving you covered in its residue\n");
             caveRoomsList[5].GenericKeywords.Add("slug", "Examining the slug you can feel it seems to have a similar curiosity to you as you do it, allowing you to touch its body " +
                 "\nand head, but shying away as your hands reach its eyes. You can feel air flowing upwards from underneath the now empty shell it once inhabited\n");
+            caveRoomsList[5].GenericKeywords.Add("chewing", "The chewing noise is coming from the middle of the room, you navigate your way to it and your hand grasps what feels " +
+                "\nlike the top of a shell, running your hand over it you can tell it is made from hard, sturdy material\n");
 
 
             //Unique keywords
@@ -834,7 +933,9 @@ namespace Caving
 
             // Ending scenes
             // Building room #6 (ending scene)
-            roomDescriptions.Add("regular ending\n");
+            roomDescriptions.Add("You ascend from the gravel path, seeing the mouth of the cavern and an almost blining light." +
+                "\n" +
+                "\nYou made it out...");
 
             // Building room #7 (ending scene(tr(sl)u(g)e ending))
             roomDescriptions.Add("You enter the hole, falling down you land amongst several other slugs. You can feel your whole body being touched and inspected by them, " +
@@ -842,12 +943,14 @@ namespace Caving
                 "\nyour flesh becoming soft, your bones shifting and changing, becoming curved and locking together into one large piece. " +
                 "\nYour head is filled with thoughts which seem not as your own. " +
                 "\n\n“My metamorphosis begins, the form they promised me is is great but the transition will be shall be agonizing.”" +
-                "\n\nYou are now a slug, you win.\n");
+                "\n\nYou are now a slug, you win" +
+                "\n" +
+                "\n⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⡀⠀⣿⣿⠆\r\n⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡿⠇⠀⣿⠁⠀\r\n⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣧⣴⣶⣿⡀⠀\r\n⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣿⣿⣿⣿⣿⣿⡄\r\n⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⠇\r\n⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⠿⠋⠀\r\n⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⣿⣿⣿⣿⣿⠀⠀⠀\r\n⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣴⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀\r\n⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣤⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⠀⠀⠀\r\n⠀⠀⣀⣀⣤⣴⣶⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠀⠀⠀⠀\r\n⠐⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⠁⠀⠀⠀⠀⠀");
 
 
             // choosing a start room
             var random = new Random();
-            currentRoom = random.Next(0, 2);
+            //currentRoom = random.Next(0, 2);
 
             // Intro to game and describing current room
             Console.WriteLine("You make your way down into the cave, a journey you have made many times before." +
@@ -864,7 +967,7 @@ namespace Caving
                 "\nHelp won't be coming...");
             Console.WriteLine();
             Console.WriteLine(roomDescriptions[currentRoom]);
-            Console.WriteLine("What will you do?");
+            Console.WriteLine("What will you do?\n");
 
             //Looping systems
             while (true)
@@ -878,7 +981,6 @@ namespace Caving
                 var currentRoomPathLeadsTo = caveRoomsList[currentRoom].PathLeadsToRoom;
                 if (currentRoom == 6 || currentRoom == 7)
                 {
-                    Console.WriteLine(roomDescriptions[currentRoom]);
                     Console.WriteLine();
                     Console.WriteLine("Press any key to exit the game...");
                     Console.ReadLine();
