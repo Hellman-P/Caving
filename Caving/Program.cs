@@ -946,7 +946,7 @@ namespace Caving
 
             // choosing a start room
             var random = new Random();
-            //currentRoom = random.Next(0, 2);
+            currentRoom = random.Next(0, 2);
 
             // Intro to game and describing current room
             Console.WriteLine("You make your way down into the cave, a journey you have made many times before." +
