@@ -10,7 +10,7 @@ namespace Caving
 {
     internal class Program
     {
-        public static int currentRoom = 3;
+        public static int currentRoom = 0;
         class CaveRoom
         {
             public SortedList<string, string> GenericKeywords = new SortedList<string, string>();
@@ -954,7 +954,7 @@ namespace Caving
 
             // choosing a start room
             var random = new Random();
-            //currentRoom = random.Next(0, 2);
+            currentRoom = random.Next(0, 2);
 
             // Intro to game and describing current room
             Console.WriteLine("You make your way down into the cave, a journey you have made many times before." +
