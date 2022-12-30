@@ -10,7 +10,7 @@ namespace Caving
 {
     internal class Program
     {
-        public static int currentRoom = 0;
+        public static int currentRoom = 3;
         class CaveRoom
         {
             public SortedList<string, string> GenericKeywords = new SortedList<string, string>();
@@ -824,7 +824,7 @@ namespace Caving
             caveRoomsList[3].PathLeadsToRoom.Add(6, 4);
 
             // Exit path texts
-            caveRoomsList[3].PathExitText.Add(6, "Ignite your dynamite with the lantern sparker and place it amongst the rubble. Then run for it hoping for the best." +
+            caveRoomsList[3].PathExitText.Add(6, "Use your dynamite with the lantern sparker and place it amongst the rubble. Then run for it hoping for the best." +
                 "\nWhen and if it blows you'll probably have a path\n");
 
 
@@ -954,7 +954,7 @@ namespace Caving
 
             // choosing a start room
             var random = new Random();
-            currentRoom = random.Next(0, 2);
+            //currentRoom = random.Next(0, 2);
 
             // Intro to game and describing current room
             Console.WriteLine("You make your way down into the cave, a journey you have made many times before." +
