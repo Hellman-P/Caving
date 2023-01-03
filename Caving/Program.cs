@@ -218,6 +218,7 @@ namespace Caving
                         break;
                     case "listen":
                     case "sound":
+                    case "noise":
                         foundTriggerWords.Add("listen");
                         break;
                     case "lamp":
@@ -262,6 +263,14 @@ namespace Caving
                     case "ruuning":
                         foundTriggerWords.Add("water");
                         break;
+                    case "loud":
+                    case "shout":
+                    case "cry":
+                    case "scream":
+                    case "talk":
+                        foundTriggerWords.Add("shout");
+                        break;
+
 
                     // Room specific keywords
 
@@ -459,6 +468,13 @@ namespace Caving
                     case "nibble":
                         foundTriggerWords.Add("chewing");
                         break;
+                    case "cute":
+                    case "alice":
+                        foundTriggerWords.Add("alice");
+                        break;
+                    case "paulina":
+                        foundTriggerWords.Add("paulina");
+                        break;
 
 
                     // Unique keywords
@@ -601,6 +617,7 @@ namespace Caving
 
             // Generic keywords
             // Keywords used by all rooms
+            caveRoomsList[0].GenericKeywords.Add("shout", "You hear your voice echo, the room is probably quite large. On one side of the room the echo continues for longer");
             caveRoomsList[0].GenericKeywords.Add("feel", "You feel the nearest rock surfaces, they feel smooth and cold, you also feel the flow of air across the room");
             caveRoomsList[0].GenericKeywords.Add("look", "You try to squint your eyes to see but it's to no avail");
             caveRoomsList[0].GenericKeywords.Add("listen", "You hear the dripping of water and its echo");
@@ -613,7 +630,7 @@ namespace Caving
             caveRoomsList[0].GenericKeywords.Add("wall", "The walls much like the ground feel smooth and and cold. You could explore around and see if you find some openings.\n");
             caveRoomsList[0].GenericKeywords.Add("walk", "You walk around the room, folling the wall and counting your steps." +
                 "\nThe room is probably quite big based on how many steps you took but you're not sure exactly where you started so it's just a guess." +
-                "\nYou also found a think crack in the wall, a slippery path upwards with dripping water and an echoing tunnel quite high on the wall");
+                "\nYou also found a thin crack in the wall, a slippery path upwards with dripping water and an echoing tunnel quite high on the wall");
             // Room specific generic keywords
             caveRoomsList[0].GenericKeywords.Add("stand", "You stand, feeling a little disoriented\n");
             caveRoomsList[0].GenericKeywords.Add("angle", "The flooer is tilted, making it a bit hard to move around\n");
@@ -667,6 +684,7 @@ namespace Caving
 
             // Generic keywords
             // Keywords used by all rooms
+            caveRoomsList[1].GenericKeywords.Add("shout", "You yell out but your voice doesn't carry far. The room is probably quite small and the water might be dampening the noise");
             caveRoomsList[1].GenericKeywords.Add("feel", "You feel the nearest surface you can find. It's cold stone, water running over it\n");
             caveRoomsList[1].GenericKeywords.Add("look", "No matter how hard you try you can't see a thing in the dark\n");
             caveRoomsList[1].GenericKeywords.Add("listen", "The sound of dripping and falling water is too loud to hear much else\n");
@@ -677,21 +695,21 @@ namespace Caving
             caveRoomsList[1].GenericKeywords.Add("floor", "The floor is mostly level with water running across it\n");
             caveRoomsList[1].GenericKeywords.Add("wall", "feeling along the wall you feel water running down across it. You also find the room to not be very large. " +
                 "\nAt one point the wall suddenly ends and you feel around to realise that you're near a ledge. It's hard to know how far the drop is unless you try dropping something first. " +
-                "\nYou also find a much less steep part of the ledge but it's still much to steep to walking along with how slippery it is\n");
+                "\nYou also find a much less steep part of the ledge but it's still much too steep to walking along with how slippery it is\n");
             caveRoomsList[1].GenericKeywords.Add("walk", "Walking around the room you suddenly feel the lack of ground under your step as you almost fall down." +
                 "\nAll the water is rushing towards this ledge. You could drop something down it to see how far down the fall goes. " +
-                "\nYou also find a much less steep portion, still to steep to walk down but you could take a risk and slide down it\n");
+                "\nYou also find a much less steep portion, still too steep to walk down but you could take a risk and slide down it\n");
             // Room specific generic keywords
             caveRoomsList[1].GenericKeywords.Add("water", "The water is running towards one end of the room for even though the floor is level");
             caveRoomsList[1].GenericKeywords.Add("stand", "You stand, feeling a little disoriented\n");
             caveRoomsList[1].GenericKeywords.Add("ledge", "The ledge is steep and you can't feel the bottom no matter what you do. The water doesn't seem to be falling" +
-            "\nthat far but it's hard to tell. You could drop heavy down it to see if you hear it land\n");
+            "\nthat far but it's hard to tell. You could drop something heavy down it to see if you hear it land\n");
 
             //Unique keywords
             caveRoomsList[1].UniqueKeywords.Add("drop", "You'd need to drop something heavy for it to be heard over the running water. The only thing you have on hand is your pickaxe." +
                 "\nIt's not something you'd want to lose before fully deciding to move forward");
 
-            caveRoomsList[1].UniqueKeywords.Add("slide", "The slide is to steep to walk on, and slippery from the water. " +
+            caveRoomsList[1].UniqueKeywords.Add("slide", "The slide is too steep to walk on, and slippery from the water. " +
                 "\nBut nothing except self preservation instict is stopping you from going down it\n");
 
             // Exploration unlocks
@@ -724,6 +742,7 @@ namespace Caving
 
             // Generic keywords
             // Keywords used by all rooms
+            caveRoomsList[2].GenericKeywords.Add("shout", "The sound gets drowned by the sound of running water very quickly");
             caveRoomsList[2].GenericKeywords.Add("feel", "You feel hard edges and damp rocks\n");
             caveRoomsList[2].GenericKeywords.Add("look", "You try your best but it's still too dark\n");
             caveRoomsList[2].GenericKeywords.Add("listen", "The running water is drowning out any other possible sounds," +
@@ -780,6 +799,7 @@ namespace Caving
 
             // Generic keywords
             // Keywords used by all rooms
+            caveRoomsList[3].GenericKeywords.Add("shout", "The sound echoes around you for a very large amount of time. This room must be massive");
             caveRoomsList[3].GenericKeywords.Add("feel", "You reach your hand out to the nearest surface and mostly feel damp rocks." +
                 "\nBut also some dirt. Might be a sign you're getting closer to getting out\n");
             caveRoomsList[3].GenericKeywords.Add("look", "It's still to dark to see, but you suspect you have probably gotten closer to the surface all in all." +
@@ -836,6 +856,7 @@ namespace Caving
 
             // Generic keywords
             // Keywords used by all rooms
+            caveRoomsList[4].GenericKeywords.Add("shout", "You hear your voice bouncing against the walls slightly before it exits the cave");
             caveRoomsList[4].GenericKeywords.Add("feel", "You feel the gravel in your hands, it would be hard to climb as it falls below you but not impossible\n");
             caveRoomsList[4].GenericKeywords.Add("look", "Finally having some light you can finally make out some details. It's a comfort to say the least, still you" +
                 "\ncan't make out much more than on your earlier inspection when entering the room\n");
@@ -886,6 +907,8 @@ namespace Caving
 
             // Generic keywords
             // Keywords used by all rooms
+            caveRoomsList[5].GenericKeywords.Add("shout", "You shout, the slimy walls dampen the noise too much for it to travel anywhere." +
+                "\nAltough you think you hear a small voice react to the sudden loud noise. It was quite a cute reaction");
             caveRoomsList[5].GenericKeywords.Add("feel", "As you feel around, you notice what seem like strange rocks, however, on closer inspection" +
                 "\nyou can clearly make out a skull, pelvis, and different pieces of bone. As well as other various paraphernalia such as clothes\n");
             caveRoomsList[5].GenericKeywords.Add("look", "You open your eyes to try and look around but immediately feel them begin to sting " +
@@ -916,7 +939,8 @@ namespace Caving
                 "\nand head, but shying away as your hands reach its eyes. You can feel air flowing upwards from underneath the now empty shell it once inhabited\n");
             caveRoomsList[5].GenericKeywords.Add("chewing", "The chewing noise is coming from the middle of the room, you navigate your way to it and your hand grasps what feels " +
                 "\nlike the top of a shell, running your hand over it you can tell it is made from hard, sturdy material\n");
-
+            caveRoomsList[5].GenericKeywords.Add("alice", "There is a very cute snail, she says her name is Alice and she lives here with her girlfriend Paulina c:");
+            caveRoomsList[5].GenericKeywords.Add("paulina", "Paulina is next to Alice, she doesn't say much and just snuggles up to Alice uwu");
 
             //Unique keywords
             caveRoomsList[5].UniqueKeywords.Add("air", "Pushing the shell to the side the air continues to stream upwards, and you can feel the outline of another hole in the ground, leading down\n");
@@ -959,11 +983,11 @@ namespace Caving
             // Intro to game and describing current room
             Console.WriteLine("You make your way down into the cave, a journey you have made many times before." +
                 "\nThe winding paths, tunnels with sharp edges, the cracks so thin you can barely breathe." +
-                "\nThey have all become everyday obsticles for you, not worse than your old daily commute." +
+                "\nThey have all become everyday obstacles for you, not worse than your old daily commute." +
                 "\nYou've become complacent and confident doing this. When the unthinkable happens..." +
                 "\nYour old rope you put there on your first expedition snaps." +
                 "\nYou fall, it feels like you fall further than you should." +
-                "\nYour equipment bashing against the wall during the fall, your light breaking. " +
+                "\nYour pickaxe loosely hanging on bashing against the walls during the fall. The lantern on your hip smashing against a rock." +
                 "\nYou hit your head and pass out..." +
                 "\n" +
                 "\n...You wake up some time later, it's hard to tell how much time has passed." +
